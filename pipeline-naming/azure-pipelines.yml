@@ -13,7 +13,7 @@ trigger:
 
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: TfxInstaller@2
@@ -43,12 +43,12 @@ steps:
     fileType: 'vsix'
     vsixFile: '*.vsix'
 
-- task: IsAzureDevOpsExtensionValidServer@2
-  inputs:
-    connectTo: 'VsTeam'
-    connectedServiceName: 'Marketplace'
-    method: 'id'
-    publisherId: 'FlorisDevreese'
-    extensionId: 'pipeline-naming'
+# - task: IsAzureDevOpsExtensionValidServer@2
+#   inputs:
+#     connectTo: 'VsTeam'
+#     connectedServiceName: 'Marketplace'
+#     method: 'id'
+#     publisherId: 'FlorisDevreese'
+#     extensionId: 'pipeline-naming'
 
 # other build tasks see: https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks&targetId=e59fd111-3faf-4b90-be81-9def48f2947b&utm_source=vstsproduct&utm_medium=ExtHubManageList
