@@ -1,0 +1,37 @@
+{
+    "manifestVersion": 1,
+    "id": "pipeline-naming",
+    "name": "Pipeline naming",
+    "version": "0.0.1",
+    "publisher": "Floris Devreese",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "Tools for building/releasing with Fabrikam. Includes one build/release task.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png",
+        "large": "images/extension-icon-large.png"
+    },
+    "files": [
+        {
+            "path": "pipeline-naming-task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "pipeline-naming-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "pipeline-naming-task"
+            }
+        }
+    ]
+}

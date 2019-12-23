@@ -1,0 +1,31 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "D5CECCA9-D8D0-4E1D-AF7E-92ABB8871342",
+    "name": "pipeline-naming-task",
+    "friendlyName": "Pipeline Naming",
+    "description": "Set the name of the pipeline using [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables) and (extra) runtime variables",
+    "helpMarkDown": "Set the name of the pipline using:\n- [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)\n- runtime variables:\n    - `%IterationName%` The name of the iteration that was active on the date of the commit",
+    "category": "Utility",
+    "author": "Floris Devreese",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Set pipeline name",
+    "inputs": [
+        {
+            "name": "format",
+            "type": "string",
+            "label": "Format",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Set the name of the pipline using:\n- [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)\n- runtime variables:\n    - `%IterationName%` The name of the iteration that was active on the date of the commit\n\nExample: `1.%IterationName%.$(Build.BuildId)`"
+        }
+    ],
+    "execution": {
+        "PowerShell": {
+            "target": "pipeline-naming.ps1"
+        }
+    }
+}
