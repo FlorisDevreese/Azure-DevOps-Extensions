@@ -13,7 +13,7 @@ trigger:
 
 
 pool:
-  vmImage: vs2017-win2016
+  vmImage: win1803
 
 steps:
 - task: TfxInstaller@2
