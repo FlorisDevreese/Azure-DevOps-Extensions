@@ -1,2 +1,12 @@
-# ExtendedVersioning
-Azure DevOps extension that allows the use of extra variables when setting the pipeline name (= version number)
+# Azure DevOps Extensions
+This repo contains the source code for these Azure DevOps Extensions
+- [Extended Pipeline Naming](#Extended-Pipeline-Naming)
+- [Artifact Labeling](#Artifact-Labeling)
+
+## Extended Pipeline Naming
+This extension contains one pipeline task that overwrites the pipeline name.
+
+**under construction**
+
+## Artifact Labeling
+**under construction**
