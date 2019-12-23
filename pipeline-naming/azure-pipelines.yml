@@ -36,6 +36,13 @@ steps:
     localizationRoot: 'pipeline-naming'
     updateTasksVersion: false
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo 'Hello world'
+      tree
+
 - task: PublishAzureDevOpsExtension@2
   inputs:
     connectTo: 'VsTeam'
