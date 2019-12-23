@@ -13,7 +13,7 @@ trigger:
 
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - task: TfxInstaller@2
