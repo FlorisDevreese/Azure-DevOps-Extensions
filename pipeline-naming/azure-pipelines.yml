@@ -45,13 +45,13 @@ steps:
     fileType: 'vsix'
     vsixFile: '*.vsix'
 
-# - task: IsAzureDevOpsExtensionValidServer@2
-#   inputs:
-#     connectTo: 'VsTeam'
-#     connectedServiceName: 'Marketplace'
-#     method: 'id'
-#     publisherId: 'FlorisDevreese'
-#     extensionId: 'pipeline-naming'
+- task: IsAzureDevOpsExtensionValidServer@2
+  inputs:
+    connectTo: 'VsTeam'
+    connectedServiceName: 'Marketplace'
+    method: 'id'
+    publisherId: 'FlorisDevreese'
+    extensionId: 'pipeline-naming'
 
 
 
