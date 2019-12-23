@@ -4,12 +4,22 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - pipeline-naming/*
+
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: TfxInstaller@2
+  inputs:
+    version: 'v0.6.x'
+
 - task: QueryAzureDevOpsExtensionVersion@2
   inputs:
     connectTo: 'VsTeam'
