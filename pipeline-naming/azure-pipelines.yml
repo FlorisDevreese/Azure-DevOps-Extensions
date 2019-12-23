@@ -42,7 +42,6 @@ steps:
     connectedServiceName: 'Marketplace'
     fileType: 'vsix'
     vsixFile: '*.vsix'
-    updateTasksVersion: false
 
 # - task: IsAzureDevOpsExtensionValidServer@2
 #   inputs:
