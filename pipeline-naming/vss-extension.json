@@ -3,7 +3,7 @@
     "id": "pipeline-naming",
     "name": "Pipeline naming",
     "version": "0.0.1",
-    "publisher": "Floris Devreese",
+    "publisher": "FlorisDevreese",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
