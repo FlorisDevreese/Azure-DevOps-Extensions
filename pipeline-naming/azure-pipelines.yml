@@ -45,7 +45,7 @@ steps:
     fileType: 'vsix'
     vsixFile: '*.vsix'
 
-- task: IsAzureDevOpsExtensionValidServer@2
+- task: IsAzureDevOpsExtensionValidServer@1
   inputs:
     connectTo: 'VsTeam'
     connectedServiceName: 'Marketplace'
