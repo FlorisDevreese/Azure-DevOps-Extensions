@@ -13,7 +13,7 @@ trigger:
 
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
 - task: TfxInstaller@2
@@ -45,7 +45,7 @@ steps:
     fileType: 'vsix'
     vsixFile: '*.vsix'
 
-- task: IsAzureDevOpsExtensionValidServer@1
+- task: IsAzureDevOpsExtensionValidServer@2
   inputs:
     connectTo: 'VsTeam'
     connectedServiceName: 'Marketplace'
