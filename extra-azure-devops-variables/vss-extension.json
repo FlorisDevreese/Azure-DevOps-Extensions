@@ -30,7 +30,7 @@
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "Calculate extra azure devops variables"
+                "name": "calculate-extra-azure-devops-variables"
             }
         }
     ]

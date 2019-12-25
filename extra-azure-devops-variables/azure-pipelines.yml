@@ -15,15 +15,15 @@ steps:
   inputs:
     version: 'v0.6.x'
 
-# - task: QueryAzureDevOpsExtensionVersion@2
-#   inputs:
-#     connectTo: 'VsTeam'
-#     connectedServiceName: 'Marketplace'
-#     publisherId: 'FlorisDevreese'
-#     extensionId: extra-azure-devops-variables
-#     versionAction: 'Patch'
-#     setBuildNumber: 'true'
-#     cwd: 'extra-azure-devops-variables'
+- task: QueryAzureDevOpsExtensionVersion@2
+  inputs:
+    connectTo: 'VsTeam'
+    connectedServiceName: 'Marketplace'
+    publisherId: 'FlorisDevreese'
+    extensionId: extra-azure-devops-variables
+    versionAction: 'Patch'
+    setBuildNumber: 'true'
+    cwd: 'extra-azure-devops-variables'
 
 - task: PackageAzureDevOpsExtension@2
   inputs:
