@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
   branches:
     include:
@@ -29,3 +24,28 @@ steps:
     versionAction: 'Patch'
     setBuildNumber: 'true'
     cwd: 'pipeline-naming'
+
+- task: PackageAzureDevOpsExtension@2
+  inputs:
+    rootFolder: 'pipeline-naming'
+    localizationRoot: 'pipeline-naming'
+    extensionVersion: '$(Build.BuildNumber)'
+    updateTasksVersion: true
+    updateTasksVersionType: 'patch'
+
+- task: PublishAzureDevOpsExtension@2
+  inputs:
+    connectTo: 'VsTeam'
+    connectedServiceName: 'Marketplace'
+    fileType: 'vsix'
+    vsixFile: '*.vsix'
+
+# - task: IsAzureDevOpsExtensionValidServer@2
+#   inputs:
+#     connectTo: 'VsTeam'
+#     connectedServiceName: 'Marketplace'
+#     method: 'id'
+#     publisherId: 'FlorisDevreese'
+#     extensionId: 'pipeline-naming'
+
+# other build tasks see: https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks&targetId=e59fd111-3faf-4b90-be81-9def48f2947b&utm_source=vstsproduct&utm_medium=ExtHubManageList
