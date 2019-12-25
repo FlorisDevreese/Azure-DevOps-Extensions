@@ -1,18 +1,14 @@
 # Azure DevOps Extensions
 This repo contains the source code for these Azure DevOps Extensions
-- [Pipeline Naming](#Pipeline-Naming-Extension)
+- [Extra variables](#Extra-Variables)
 - [Artifact Labeling](#Artifact-Labeling-Extension)
 
-## Pipeline Naming Extension
-This extension contains one pipeline task that overwrites the pipeline name.
+## Extra variables
+This extension contains one pipeline task that sets the following environment variables:
+- `EXTRAVARIABLES_ACTIVESPRINT`: Contains the name of the sprint that was active at the time of commit.
+    - **Note:** Value will be `null` when there's no sprint active, or when there are multiple sprints active at the time of commit.
 
-### Pipeline Naming Task
-Overrides the name of the pipline using:
-- [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)
-- runtime variables:
-    - `%IterationName%`:  The name of the iteration that was active on the date of the commit
-
-Example format for pipeline name: `1.%IterationName%.$(Build.BuildId)`
+**Note:** For now there is only one variable calculated in the task. Extra variables can be implemented when needed.
 
 ## Artifact Labeling Extension
 **todo**

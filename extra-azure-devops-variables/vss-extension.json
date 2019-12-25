@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
-    "id": "pipeline-naming",
-    "name": "Pipeline naming",
+    "id": "extra-azure-devops-variables",
+    "name": "Extra azure-devops variables",
     "version": "0.0.1",
     "publisher": "FlorisDevreese",
     "targets": [
@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Tools for building/releasing with Fabrikam. Includes one build/release task.",
+    "description": "Tool that calculates extra Azure DevOps related environment variables.",
     "categories": [
         "Azure Pipelines"
     ],
@@ -19,18 +19,18 @@
     },
     "files": [
         {
-            "path": "pipeline-naming-task"
+            "path": "calculate-extra-azure-devops-variables"
         }
     ],
     "contributions": [
         {
-            "id": "pipeline-naming-task",
+            "id": "calculate-extra-azure-devops-variables",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "pipeline-naming-task"
+                "name": "Calculate extra azure devops variables"
             }
         }
     ]
