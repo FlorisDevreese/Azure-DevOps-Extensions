@@ -12,6 +12,8 @@ jobs:
     vmImage: 'ubuntu-latest'
   steps:
   - task: calculate-extra-azure-devops-variables@0
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
@@ -22,6 +24,8 @@ jobs:
     vmImage: 'windows-latest'
   steps:
   - task: calculate-extra-azure-devops-variables@0
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   - task: PowerShell@2
     inputs:
       targetType: 'inline'

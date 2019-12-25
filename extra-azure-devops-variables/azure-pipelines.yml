@@ -5,7 +5,8 @@ trigger:
   paths:
     include:
     - extra-azure-devops-variables/*
-
+    exclude:
+    - extra-azure-devops-variables/test/*
 
 pool:
   vmImage: 'ubuntu-latest'
