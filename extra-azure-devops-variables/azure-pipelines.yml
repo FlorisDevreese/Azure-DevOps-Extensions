@@ -9,7 +9,7 @@ trigger:
     - master
   paths:
     include:
-    - pipeline-naming/*
+    - extra-azure-devops-variables/*
 
 
 pool:
