@@ -23,12 +23,12 @@ steps:
     extensionId: extra-azure-devops-variables
     versionAction: 'Patch'
     setBuildNumber: 'true'
-    cwd: 'pipeline-naming'
+    cwd: 'extra-azure-devops-variables'
 
 - task: PackageAzureDevOpsExtension@2
   inputs:
-    rootFolder: 'pipeline-naming'
-    localizationRoot: 'pipeline-naming'
+    rootFolder: 'extra-azure-devops-variables'
+    localizationRoot: 'extra-azure-devops-variables'
     extensionVersion: '$(Build.BuildNumber)'
     updateTasksVersion: true
     updateTasksVersionType: 'patch'
@@ -46,6 +46,6 @@ steps:
 #     connectedServiceName: 'Marketplace'
 #     method: 'id'
 #     publisherId: 'FlorisDevreese'
-#     extensionId: 'pipeline-naming'
+#     extensionId: 'extra-azure-devops-variables'
 
 # other build tasks see: https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks&targetId=e59fd111-3faf-4b90-be81-9def48f2947b&utm_source=vstsproduct&utm_medium=ExtHubManageList
