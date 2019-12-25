@@ -20,7 +20,7 @@ steps:
     connectTo: 'VsTeam'
     connectedServiceName: 'Marketplace'
     publisherId: 'FlorisDevreese'
-    extensionId: 'pipeline-naming'
+    extensionId: extra-azure-devops-variables
     versionAction: 'Patch'
     setBuildNumber: 'true'
     cwd: 'pipeline-naming'

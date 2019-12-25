@@ -8,7 +8,7 @@ This extension contains one task that sets some extra Azure DevOps related envir
 - `EXTRAVARIABLES_ACTIVESPRINT`: Contains the name of the sprint that was active at the time of commit.
     - **Note:** Value will be `null` when there's no sprint active, or when multiple sprints are active at the time of commit.
 
-**Note:** For now there is only one variable calculated in the task. Extra variables can be implemented when needed.
+Use these variables in the same way as you use the [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)
 
 ## Artifact Labeling Extension
 **todo**
