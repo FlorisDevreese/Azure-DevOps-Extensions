@@ -7,15 +7,16 @@
     "helpMarkDown": "Calculates these extra variables:\n- `EXTRAVARIABLES_ACTIVESPRINT`: Contains the name of the sprint that was active at the time of commit.\n    - **Note:** Value will be `null` when there's no sprint active, or when multiple sprints are active at the time of commit.",
     "category": "Utility",
     "author": "Floris Devreese",
+    "minimumAgentVersion": "2.115.0",
     "version": {
         "Major": 0,
-        "Minor": 1,
+        "Minor": 2,
         "Patch": 0
     },
     "instanceNameFormat": "Calculate extra Azure Devops variables",
     "execution": {
-        "PowerShell": {
-            "target": "calculate-extra-azure-devops-variables.ps1"
+        "Node10": {
+            "target": "calculate-extra-azure-devops-variables.js"
         }
     }
 }
