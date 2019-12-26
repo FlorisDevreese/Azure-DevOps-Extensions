@@ -24,14 +24,6 @@ steps:
     script: 'tsc'
     pwsh: true
     workingDirectory: '$(workFolder)'
-    
-- task: PowerShell@2
-  displayName: Run Tests
-  inputs:
-    targetType: 'inline'
-    script: 'mocha tests/_suite.js'
-    pwsh: true
-    workingDirectory: '$(workFolder)'
 
 - task: TfxInstaller@2
   inputs:
