@@ -1,7 +1,4 @@
 trigger:
-  branches:
-    include:
-    - master
   paths:
     include:
     - extra-azure-devops-variables/*
