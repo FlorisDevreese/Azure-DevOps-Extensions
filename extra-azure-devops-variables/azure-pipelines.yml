@@ -11,12 +11,37 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  workFolder: calculate-extra-azure-devops-variables
+
 steps:
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(workFolder)'
+    
+- task: PowerShell@2
+  displayName: Compile TypeScript
+  inputs:
+    targetType: 'inline'
+    script: 'tsc'
+    pwsh: true
+    workingDirectory: '$(workFolder)'
+    
+- task: PowerShell@2
+  displayName: Run Tests
+  inputs:
+    targetType: 'inline'
+    script: 'mocha tests/_suite.js'
+    pwsh: true
+    workingDirectory: '$(workFolder)'
+
 - task: TfxInstaller@2
   inputs:
     version: 'v0.6.x'
 
 - task: QueryAzureDevOpsExtensionVersion@2
+  displayName: Increase extension version
   inputs:
     connectTo: 'VsTeam'
     connectedServiceName: 'Marketplace'
@@ -27,6 +52,7 @@ steps:
     cwd: 'extra-azure-devops-variables'
 
 - task: PackageAzureDevOpsExtension@2
+  displayName: Package extension
   inputs:
     rootFolder: 'extra-azure-devops-variables'
     localizationRoot: 'extra-azure-devops-variables'
@@ -35,6 +61,7 @@ steps:
     updateTasksVersionType: 'patch'
 
 - task: PublishAzureDevOpsExtension@2
+  displayName: Publish extension
   inputs:
     connectTo: 'VsTeam'
     connectedServiceName: 'Marketplace'
