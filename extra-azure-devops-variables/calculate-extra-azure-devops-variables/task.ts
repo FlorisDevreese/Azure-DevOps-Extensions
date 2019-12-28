@@ -24,7 +24,7 @@ function getActiveSprintName() : string {
     args.push('--format=%ci')
     args.push(<string> process.env.BUILD_SOURCEVERSION)
 
-    let dateTimeString = tl.exec('git', args) // todo check if you can get this in one line
+    let dateTimeString = tl.exec('git', "show -s --format=%ci") // todo check if you can get this in one line
     console.log(`datetimetring: ${dateTimeString}`)
 
 
