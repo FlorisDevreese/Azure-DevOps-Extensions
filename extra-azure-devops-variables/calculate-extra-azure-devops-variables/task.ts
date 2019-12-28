@@ -17,9 +17,9 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 async function getActiveSprintName(): Promise<string> {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
-    let dateTimeString = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
-    console.log(`dateTimeString: ${dateTimeString}`)
-    let commitTime: Date = new Date(`${dateTimeString}`)
+    let result : tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
+    console.log(`dateTimeString: ${result.stdout}`)
+    let commitTime: Date = new Date(`${result.stdout}`)
     console.log(`Time of commit: ${commitTime}`)
 
 
