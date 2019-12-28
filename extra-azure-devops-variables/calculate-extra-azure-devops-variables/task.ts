@@ -3,7 +3,7 @@ import tl = require('azure-pipelines-task-lib/task');
 try {
     // ------------------------------------ prerequisites ------------------------------------
     if (process.env.SYSTEM_ACCESSTOKEN == null) {
-        tl.setResult(tl.TaskResult.Failed, "No access to SYSTEM_ACCESSTOKEN. You must provide access to System.AccessToken in order for this task to work.");
+        tl.setResult(tl.TaskResult.Failed, "No access to SYSTEM_ACCESSTOKEN. You must provide access to System.AccessToken. See how: https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml#systemaccesstoken");
         process.exit(-1);
     }
 
