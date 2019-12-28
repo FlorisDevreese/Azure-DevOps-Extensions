@@ -17,15 +17,11 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 function getActiveSprintName() : string {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
-
-    const args: Array<string> = new Array<string>()
-    args.push('show')
-    args.push('-s')
-    args.push('--format=%ci')
-    args.push(<string> process.env.BUILD_SOURCEVERSION)
-
-    let dateTimeString = tl.exec('git', "show -s --format=%ci") // todo check if you can get this in one line
+    let dateTimeString = tl.exec(`git show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`, null )
     console.log(`datetimetring: ${dateTimeString}`)
+    let commitTime = new Date(<string> <unknown> dateTimeString)
+    console.log(`commitTime: ${commitTime}`)
+
 
 
     return "testValue"
