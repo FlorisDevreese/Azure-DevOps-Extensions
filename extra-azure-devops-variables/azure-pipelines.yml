@@ -40,6 +40,9 @@ steps:
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
+  - pwsh: 'Get-ChildItem env:'
+    displayName: Show all environment variables
+
   - task: TfxInstaller@2
     inputs:
       version: "v0.6.x"
