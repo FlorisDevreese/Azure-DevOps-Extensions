@@ -16,7 +16,7 @@
     "instanceNameFormat": "Calculate extra Azure Devops variables",
     "execution": {
         "Node10": {
-            "target": "calculate-extra-azure-devops-variables.js"
+            "target": "task.js"
         }
     }
 }

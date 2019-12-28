@@ -1,61 +1,80 @@
 trigger:
+  branches:
+    include:
+      - "*"
   paths:
     include:
-    - extra-azure-devops-variables/*
+      - extra-azure-devops-variables/*
     exclude:
-    - extra-azure-devops-variables/test/*
+      - extra-azure-devops-variables/test/*
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 variables:
   workFolder: extra-azure-devops-variables/calculate-extra-azure-devops-variables
 
 steps:
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: '$(workFolder)'
-    
-- task: PowerShell@2
-  displayName: Compile TypeScript
-  inputs:
-    targetType: 'inline'
-    script: 'tsc'
-    pwsh: true
-    workingDirectory: '$(workFolder)'
+  - task: UseNode@1
 
-- task: TfxInstaller@2
-  inputs:
-    version: 'v0.6.x'
+  - task: Npm@1
+    inputs:
+      command: "install"
+      workingDir: "$(workFolder)"
 
-- task: QueryAzureDevOpsExtensionVersion@2
-  displayName: Increase extension version
-  inputs:
-    connectTo: 'VsTeam'
-    connectedServiceName: 'Marketplace'
-    publisherId: 'FlorisDevreese'
-    extensionId: extra-azure-devops-variables
-    versionAction: 'Patch'
-    setBuildNumber: 'true'
-    cwd: 'extra-azure-devops-variables'
+  - task: PowerShell@2
+    displayName: tsc
+    inputs:
+      targetType: "inline"
+      script: "tsc"
+      pwsh: true
+      workingDirectory: "$(workFolder)"
 
-- task: PackageAzureDevOpsExtension@2
-  displayName: Package extension
-  inputs:
-    rootFolder: 'extra-azure-devops-variables'
-    localizationRoot: 'extra-azure-devops-variables'
-    extensionVersion: '$(Build.BuildNumber)'
-    updateTasksVersion: true
-    updateTasksVersionType: 'patch'
+  - task: PowerShell@2
+    displayName: node task.js
+    inputs:
+      targetType: "inline"
+      script: "node task.js"
+      pwsh: true
+      workingDirectory: "$(workFolder)"
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
-- task: PublishAzureDevOpsExtension@2
-  displayName: Publish extension
-  inputs:
-    connectTo: 'VsTeam'
-    connectedServiceName: 'Marketplace'
-    fileType: 'vsix'
-    vsixFile: '*.vsix'
+  - task: TfxInstaller@2
+    inputs:
+      version: "v0.6.x"
+    eabled: false
+
+  - task: QueryAzureDevOpsExtensionVersion@2
+    displayName: Increase extension version
+    inputs:
+      connectTo: "VsTeam"
+      connectedServiceName: "Marketplace"
+      publisherId: "FlorisDevreese"
+      extensionId: extra-azure-devops-variables
+      versionAction: "Patch"
+      setBuildNumber: "true"
+      cwd: "extra-azure-devops-variables"
+    eabled: false
+
+  - task: PackageAzureDevOpsExtension@2
+    displayName: Package extension
+    inputs:
+      rootFolder: "extra-azure-devops-variables"
+      localizationRoot: "extra-azure-devops-variables"
+      extensionVersion: "$(Build.BuildNumber)"
+      updateTasksVersion: true
+      updateTasksVersionType: "patch"
+    eabled: false
+
+  - task: PublishAzureDevOpsExtension@2
+    displayName: Publish extension
+    inputs:
+      connectTo: "VsTeam"
+      connectedServiceName: "Marketplace"
+      fileType: "vsix"
+      vsixFile: "*.vsix"
+    eabled: false
 
 # - task: IsAzureDevOpsExtensionValidServer@2
 #   inputs:
