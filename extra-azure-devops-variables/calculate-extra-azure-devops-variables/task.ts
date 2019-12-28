@@ -14,12 +14,12 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 }
 
 // ------------------------------------ functions ------------------------------------
-function getActiveSprintName() : string {
+function getActiveSprintName(): string {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
-    let dateTimeString = tl.exec(`git show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`, null )
+    let dateTimeString = tl.exec("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
     console.log(`datetimetring: ${dateTimeString}`)
-    let commitTime = new Date(<string> <unknown> dateTimeString)
+    let commitTime = new Date(<string><unknown>dateTimeString)
     console.log(`commitTime: ${commitTime}`)
 
 
@@ -35,7 +35,7 @@ try {
     console.log("Variables calculated:")
     console.log(extraVariables)
 
-    for(let variable in extraVariables) {
+    for (let variable in extraVariables) {
         tl.setVariable(variable, extraVariables[variable])
     }
 }
