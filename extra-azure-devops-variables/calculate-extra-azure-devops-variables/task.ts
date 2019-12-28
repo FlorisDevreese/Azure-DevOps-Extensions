@@ -7,8 +7,7 @@ try {
         process.exit(-1)
     }
 
-    // let supportedProviders = ["TfsGit", "Git", "GitHub"]
-    let supportedProviders = ["TfsGit", "Git", "testje"]
+    let supportedProviders = ["TfsGit", "Git", "GitHub"]
     if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER)) {
         tl.setResult(tl.TaskResult.Failed, `This task only supports git based version control systems like: ${supportedProviders.join(', ')}. '${process.env.BUILD_REPOSITORY_PROVIDER}' is not supported.`)
         process.exit(-1)
