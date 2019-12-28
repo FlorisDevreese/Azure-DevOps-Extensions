@@ -1,5 +1,5 @@
 import tl = require('azure-pipelines-task-lib/task')
-import tr = require('azure-pipelines-task-lib/toolrunner');
+import tr = require('azure-pipelines-task-lib/toolrunner')
 
 // ------------------------------------ prerequisites ------------------------------------
 if (process.env.SYSTEM_ACCESSTOKEN == null) {
@@ -18,9 +18,17 @@ function getActiveSprintName() : string {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
 
-    
-    return "testValue"
+    const args: Array<string> = new Array<string>()
+    args.push('show')
+    args.push('-s')
+    args.push('--format=%ci')
+    args.push(<string> process.env.BUILD_SOURCEVERSION)
 
+    let dateTimeString = tl.exec('git', args) // todo check if you can get this in one line
+    console.log(`datetimetring: ${dateTimeString}`)
+
+
+    return "testValue"
 }
 
 // ------------------------------------ program flow ------------------------------------
