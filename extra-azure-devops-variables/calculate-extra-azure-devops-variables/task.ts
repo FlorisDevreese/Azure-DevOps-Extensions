@@ -4,8 +4,15 @@ try {
     // ------------------------------------ prerequisites ------------------------------------
     if (process.env.SYSTEM_ACCESSTOKEN == null) {
         tl.setResult(tl.TaskResult.Failed, "No access to SYSTEM_ACCESSTOKEN. You must provide access to System.AccessToken in order for this task to work.");
+        process.exit(-1);
     }
 
+    // let supportedProviders = ["TfsGit", "Git", "GitHub"];
+    let supportedProviders = ["TfsGit", "Git", "testje"];
+    if (supportedProviders.includes(<string> process.env.BUILD_REPOSITORY_PROVIDER)) {
+        tl.setResult(tl.TaskResult.Failed, `This task only supports git based version control systems like: ${supportedProviders.join(', ')}. '${process.env.BUILD_REPOSITORY_PROVIDER}' is not supported.`);
+        process.exit(-1);
+    }
     // ------------------------------------ functions ------------------------------------
 
     // ------------------------------------ program flow ------------------------------------
