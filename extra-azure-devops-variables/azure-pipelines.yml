@@ -37,8 +37,8 @@ steps:
       script: "node task.js"
       pwsh: true
       workingDirectory: "$(workFolder)"
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    # env:
+    #   SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
   - task: TfxInstaller@2
     inputs:
