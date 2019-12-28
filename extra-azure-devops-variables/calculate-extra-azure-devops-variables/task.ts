@@ -1,14 +1,5 @@
 import tl = require('azure-pipelines-task-lib/task')
 
-console.log("all environment variables:")
-for (let key in process.env) {
-    let value = process.env[key]
-    console.log(` - ${key}: ${value}`)
-}
-
-console.log("print dictonary")
-console.log(process.env)
-
 try {
     // ------------------------------------ prerequisites ------------------------------------
     if (process.env.SYSTEM_ACCESSTOKEN == null) {
@@ -18,8 +9,7 @@ try {
 
     // let supportedProviders = ["TfsGit", "Git", "GitHub"]
     let supportedProviders = ["TfsGit", "Git", "testje"]
-    console.log(`build_repository_provider: ${process.env.BUILD_REPOSITORY_PROVIDER}`)
-    if (supportedProviders.includes(<string> process.env.BUILD_REPOSITORY_PROVIDER)) {
+    if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER)) {
         tl.setResult(tl.TaskResult.Failed, `This task only supports git based version control systems like: ${supportedProviders.join(', ')}. '${process.env.BUILD_REPOSITORY_PROVIDER}' is not supported.`)
         process.exit(-1)
     }
@@ -27,7 +17,7 @@ try {
 
     // ------------------------------------ program flow ------------------------------------
 
-    let variabele = process.env.path
+    let variabele = process.env.PATH
 
 
     console.log(`path variable: ${variabele}`)
