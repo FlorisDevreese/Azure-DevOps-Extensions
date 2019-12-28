@@ -14,38 +14,38 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 }
 
 // ------------------------------------ functions ------------------------------------
-function getActiveSprintName() : string {
+async function getActiveSprintName(): Promise<string> {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
+    let dateTimeString = await tl.exec("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
+    console.log(`dateTimeString: ${dateTimeString}`)
+    let commitTime: Date = new Date(dateTimeString)
+    console.log(`commitTime: ${commitTime}`)
 
-    const args: Array<string> = new Array<string>()
-    args.push('show')
-    args.push('-s')
-    args.push('--format=%ci')
-    args.push(<string> process.env.BUILD_SOURCEVERSION)
-
-    let dateTimeString = tl.exec(`git`, `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}` ) // todo check if you can get this in one line
-    console.log(`datetimetring: ${dateTimeString}`)
 
 
     return "testValue"
 }
 
-// ------------------------------------ program flow ------------------------------------
-try {
-    let extraVariables: { [variable: string]: string } = {}
-    extraVariables["EXTRAVARIABLES_ACTIVESPRINT"] = getActiveSprintName()
+async function run() {
+    try {
+        let extraVariables: { [variable: string]: string } = {}
+        extraVariables["EXTRAVARIABLES_ACTIVESPRINT"] = await getActiveSprintName()
 
-    console.log("Variables calculated:")
-    console.log(extraVariables)
+        console.log("Variables calculated:")
+        console.log(extraVariables)
 
-    for(let variable in extraVariables) {
-        tl.setVariable(variable, extraVariables[variable])
+        for (let variable in extraVariables) {
+            tl.setVariable(variable, extraVariables[variable])
+        }
+    }
+    catch (err) {
+        tl.setResult(tl.TaskResult.Failed, err.message)
     }
 }
-catch (err) {
-    tl.setResult(tl.TaskResult.Failed, err.message)
-}
+
+run()
+
 
 
 
