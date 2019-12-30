@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "extra-azure-devops-variables",
     "name": "Extra Azure DevOps variables",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "publisher": "FlorisDevreese",
     "targets": [
         {

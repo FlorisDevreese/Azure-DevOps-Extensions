@@ -9,8 +9,8 @@
     "author": "Floris Devreese",
     "minimumAgentVersion": "2.115.0",
     "version": {
-        "Major": 0,
-        "Minor": 3,
+        "Major": 1,
+        "Minor": 0,
         "Patch": 0
     },
     "instanceNameFormat": "Calculate extra Azure Devops variables",
