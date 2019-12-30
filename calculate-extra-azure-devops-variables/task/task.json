@@ -4,7 +4,7 @@
     "name": "task",
     "friendlyName": "Calculate extra Azure Devops variables",
     "description": "Calculate extra Azure Devops variables. Use these variables in the same way as you use the 'Azure DevOps predefined variables'",
-    "helpMarkDown": "Calculates these extra variables:\n\n| Environment Variable | Meaning |\n|-|-|\n| `EXTRAVARIABLES_ACTIVESPRINT` | Name of the sprint active on day of commit. Is `null` when no active, or multiple active sprints.|",
+    "helpMarkDown": "Calculates these extra variables:\n\n| Environment Variable | Meaning |\n|-|-|\n| `EXTRAVARIABLES_ACTIVESPRINT` | Name of the sprint active on day of commit.\nIs `null` when no active, or multiple active sprints.|",
     "category": "Utility",
     "author": "Floris Devreese",
     "minimumAgentVersion": "2.115.0",

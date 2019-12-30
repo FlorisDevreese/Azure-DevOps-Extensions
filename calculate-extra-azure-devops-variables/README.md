@@ -6,7 +6,7 @@ Contains the `Calculate extra Azure Devops variables` pipeline task that calcula
 ## Calculated extra variables
 | Environment Variable | Meaning |
 |-|-|
-| `EXTRAVARIABLES_ACTIVESPRINT` | Name of the sprint active on day of commit. Is `null` when no active, or multiple active sprints.|
+| `EXTRAVARIABLES_ACTIVESPRINT` | Name of the sprint active on day of commit.<br>Is `null` when no active, or multiple active sprints.|
 
 ## Usage
 Add the `Calculate extra Azure Devops variables` task to your pipeline. In the followup pipeline tasks you can use the calculated extra variables in the same way as you use the [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables).
