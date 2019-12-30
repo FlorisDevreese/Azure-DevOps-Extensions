@@ -24,6 +24,9 @@ async function getActiveSprintName(): Promise<string> {
     let commitTime: Date = new Date(`${gitResponse.stdout}`)
     tl.debug(`Time of commit: ${commitTime}`)
 
+    let commitDay = new Date(Date.UTC(commitTime.getFullYear(), commitTime.getMonth(), commitTime.getDate()))
+    tl.debug(`commit day in UTC (for comparing dates): ${commitDay}`)
+
     tl.debug("Get all sprints")
     var options = {
         uri: `${process.env.SYSTEM_COLLECTIONURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
@@ -39,7 +42,7 @@ async function getActiveSprintName(): Promise<string> {
     allSprints.forEach(function (sprint) { tl.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
     tl.debug(`Get active sprints at time of commit`)
-    let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= new Date(sprint.attributes.startDate) && commitTime < new Date(sprint.attributes.finishDate))
+    let activeSprints: Array<any> = allSprints.filter(sprint => commitDay >= new Date(sprint.attributes.startDate) && commitDay < new Date(sprint.attributes.finishDate))
     tl.debug(`Active sprints: `)
     activeSprints.forEach(function (sprint) { tl.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
