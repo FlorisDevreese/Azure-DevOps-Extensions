@@ -1,6 +1,6 @@
 {
     "manifestVersion": 1,
-    "id": "extra-azure-devops-variables",
+    "id": "calculate-extra-azure-devops-variables",
     "name": "Calculate extra Azure DevOps variables",
     "version": "1.0.0",
     "publisher": "FlorisDevreese",

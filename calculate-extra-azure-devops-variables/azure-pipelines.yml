@@ -33,16 +33,16 @@ steps:
     inputs:
       version: "v0.6.x"
 
-  - task: QueryAzureDevOpsExtensionVersion@2
-    displayName: Increase extension version
-    inputs:
-      connectTo: "VsTeam"
-      connectedServiceName: "Marketplace"
-      publisherId: "FlorisDevreese"
-      extensionId: extra-azure-devops-variables
-      versionAction: "Patch"
-      setBuildNumber: "true"
-      cwd: "$(workFolder)"
+  # - task: QueryAzureDevOpsExtensionVersion@2
+  #   displayName: Increase extension version
+  #   inputs:
+  #     connectTo: "VsTeam"
+  #     connectedServiceName: "Marketplace"
+  #     publisherId: "FlorisDevreese"
+  #     extensionId: calculate-extra-azure-devops-variables
+  #     versionAction: "Patch"
+  #     setBuildNumber: "true"
+  #     cwd: "$(workFolder)"
 
   - task: PackageAzureDevOpsExtension@2
     displayName: Package extension

@@ -15,7 +15,7 @@ Add the `Calculate extra Azure Devops variables` task to your pipeline. In the f
 ```yml
 # todo provide a shorter name
 steps:
-  - task: FlorisDevreese.extra-azure-devops-variables.calculate-extra-azure-devops-variables.task@1
+  - task: FlorisDevreese.calculate-extra-azure-devops-variables.task@1
     displayName: 'Calculate extra Azure Devops variables'
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken) # must provide access to SYSTEM_ACCESSTOKEN
