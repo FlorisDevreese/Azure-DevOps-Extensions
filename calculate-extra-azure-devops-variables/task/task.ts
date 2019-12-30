@@ -17,6 +17,10 @@ async function getActiveSprintName(): Promise<string> {
     console.log("Calculate active sprint")
     tl.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
     let gitResponse: tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
+    if (!Date.parse(gitResponse.stdout)) {
+        tl.warning(`Cannot calculate the active sprint because it could not get the commit time of commit '${process.env.BUILD_SOURCEVERSION}'. This can be the result of the "Don't sync sources" option that is enabled.`)
+        return ""
+    }
     let commitTime: Date = new Date(`${gitResponse.stdout}`)
     tl.debug(`Time of commit: ${commitTime}`)
 
