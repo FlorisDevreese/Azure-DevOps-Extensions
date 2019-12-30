@@ -49,7 +49,7 @@ steps:
     inputs:
       rootFolder: "$(workFolder)"
       localizationRoot: "$(workFolder)"
-      extensionVersion: "$(Build.BuildNumber)"
+      # extensionVersion: "$(Build.BuildNumber)"
       updateTasksVersion: true
       updateTasksVersionType: "patch"
 
