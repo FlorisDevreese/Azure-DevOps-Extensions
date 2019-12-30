@@ -36,18 +36,18 @@
     },
     "files": [
         {
-            "path": "calculate-extra-azure-devops-variables"
+            "path": "task"
         }
     ],
     "contributions": [
         {
-            "id": "calculate-extra-azure-devops-variables",
+            "id": "task",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "calculate-extra-azure-devops-variables"
+                "name": "task"
             }
         }
     ]

@@ -1,3 +1,3 @@
 # Azure DevOps Extensions
 This repo contains the source code for these Azure DevOps Extensions:
-1. [Calculate extra Azure DevOps variables](./Calculate-extra-Azure-DevOps-variables)
+1. [Calculate extra Azure DevOps variables](./calculate-extra-Azure-DevOps-variables)
