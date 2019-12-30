@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "extra-azure-devops-variables",
-    "name": "Extra Azure DevOps variables",
+    "name": "Calculate extra Azure DevOps variables",
     "version": "1.0.0",
     "publisher": "FlorisDevreese",
     "targets": [
@@ -9,13 +9,30 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Tool that calculates extra Azure DevOps related environment variables.",
+    "description": "Pipeline task that calculates extra Azure DevOps related environment variables.",
     "categories": [
         "Azure Pipelines"
     ],
+    "tags": [
+        "replace"
+    ],
+    "links": {
+        "support": { "uri": "https://github.com/FlorisDevreese/Azure-DevOps-Extensions/issues" }
+    },
     "icons": {
         "default": "images/extension-icon.png",
         "large": "images/extension-icon-large.png"
+    },
+    "screenshots": [
+        { "path": "images/classic build screenshot.png" }
+    ],
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/FlorisDevreese/Azure-DevOps-Extensions"
+    },
+    "content": {
+        "details": { "path": "README.md" },
+        "license": { "path": "LICENSE.txt" }
     },
     "files": [
         {
