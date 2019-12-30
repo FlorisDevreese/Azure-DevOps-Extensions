@@ -4,13 +4,13 @@ trigger:
       - "*"
   paths:
     include:
-      - calculate-extra-azure-devOps-variables/*
+      - calculate-extra-azure-devops-variables/*
 
 pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  workFolder: calculate-extra-azure-devOps-variables/task
+  workFolder: calculate-extra-azure-devops-variables/task
 
 steps:
   - task: UseNode@1
