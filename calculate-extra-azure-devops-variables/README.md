@@ -1,13 +1,31 @@
 # Calculate extra Azure DevOps variables
 [![Build Status](https://dev.azure.com/florisdevreese/Azure%20Devops%20Extensions/_apis/build/status/FlorisDevreese.Azure-DevOps-Extensions?branchName=master)](https://dev.azure.com/florisdevreese/Azure%20Devops%20Extensions/_build/latest?definitionId=2&branchName=master)
 
-Contains the `Calculate extra Azure Devops variables` pipeline task that calculates extra Azure DevOps related environment variables:
+Contains the `Calculate extra Azure Devops variables` pipeline task that calculates extra Azure DevOps related environment variables
 
+## Calculated extra variables
 | Environment Variable | Meaning |
 |-|-|
 | `EXTRAVARIABLES_ACTIVESPRINT` | Name of the sprint active at time of commit.<br> - **Note 1:** Is `null` when no active sprint, or when multiple active sprints.<br> - **Note 2:** Sprint dates are in `UTC` time. The commit time is local time. So when looking for tha active sprint it will take time zone difference into account.|
 
+## Usage
+Add the `Calculate extra Azure Devops variables` task to your pipeline. In the followup pipeline tasks you can use the calculated extra variables in the same way as you use the [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables).
 
-Use these variables in the same way as you use the [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)
+### yaml pipeline
+```yml
+# todo provide a shorter name
+steps:
+  - task: FlorisDevreese.extra-azure-devops-variables.calculate-extra-azure-devops-variables.task@1
+    displayName: 'Calculate extra Azure Devops variables'
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken) # must provide access to SYSTEM_ACCESSTOKEN
+    
+  - powershell: Write-Host "Use variables like this '$env:EXTRAVARIABLES_ACTIVESPRINT'"
+    displayName: 'use variable $(EXTRAVARIABLES_ACTIVESPRINT)'
+```
 
-**Note:** For the moment only one extra variable is calculated. If you have ideas for other variables that could be calculated, just give a shout, or create a pull request. All help is welcome 😎!
+### Classic build
+![classic build screenshot](images/classic-build-screenshot.png)
+
+## Contribute
+For the moment only one extra variable is calculated. If you have ideas for other variables that could be calculated, just give a shout, or create a pull request. All help is welcome 😎!
