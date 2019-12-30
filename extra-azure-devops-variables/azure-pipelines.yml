@@ -31,23 +31,9 @@ steps:
       pwsh: true
       workingDirectory: "$(workFolder)"
 
-  - task: PowerShell@2
-    displayName: node task.js
-    inputs:
-      targetType: "inline"
-      script: "node task.js"
-      pwsh: true
-      workingDirectory: "$(workFolder)"
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
-  - pwsh: 'Get-ChildItem env:'
-    displayName: Show all environment variables
-
   - task: TfxInstaller@2
     inputs:
       version: "v0.6.x"
-    enabled: false
 
   - task: QueryAzureDevOpsExtensionVersion@2
     displayName: Increase extension version
@@ -59,7 +45,6 @@ steps:
       versionAction: "Patch"
       setBuildNumber: "true"
       cwd: "extra-azure-devops-variables"
-    enabled: false
 
   - task: PackageAzureDevOpsExtension@2
     displayName: Package extension
@@ -69,7 +54,6 @@ steps:
       extensionVersion: "$(Build.BuildNumber)"
       updateTasksVersion: true
       updateTasksVersionType: "patch"
-    enabled: false
 
   - task: PublishAzureDevOpsExtension@2
     displayName: Publish extension
@@ -78,7 +62,6 @@ steps:
       connectedServiceName: "Marketplace"
       fileType: "vsix"
       vsixFile: "*.vsix"
-    enabled: false
 
 # - task: IsAzureDevOpsExtensionValidServer@2
 #   inputs:
