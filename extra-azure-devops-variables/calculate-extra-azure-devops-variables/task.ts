@@ -32,13 +32,15 @@ async function getActiveSprintName(): Promise<string> {
         },
         json: true // Automatically parses the JSON string in the response
     };
-
     let webResponse = await rpn.get(options);
     let allSprints: Array<any> = webResponse.value
     console.log(`All sprints: `) // todo must be debug
-    allSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}`) })
-    // console.log(`${allSprints.name.join("\n - ")}`)
+    allSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
 
+    console.log(`Get active sprints at time of commit`)
+    let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= sprint.attributes.startDate && commitTime < sprint.attributes.finishDate)
+    console.log(`Active sprints: `) // todo must be debug
+    activeSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
 
     return "testValue"
 }
