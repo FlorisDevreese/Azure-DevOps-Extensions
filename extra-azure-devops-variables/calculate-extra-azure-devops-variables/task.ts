@@ -16,33 +16,43 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 
 // ------------------------------------ functions ------------------------------------
 async function getActiveSprintName(): Promise<string> {
-    console.debug("Calculate active sprint")
+    console.log("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
     let gitResponse: tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
     let commitTime: Date = new Date(`${gitResponse.stdout}`)
-    console.log(`Time of commit: ${commitTime}`)
+    console.debug(`Time of commit: ${commitTime}`)
 
     console.debug("Get all sprints")
-    let escapedTeamProject = encodeURI(<string>process.env.SYSTEM_TEAMPROJECT) // todo get this into the string variable
     var options = {
-        uri: `${process.env.SYSTEM_COLLECTIONURI}${escapedTeamProject}/_apis/work/teamsettings/iterations?api-version=5.1`,
+        uri: `${process.env.SYSTEM_COLLECTIONURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${process.env.SYSTEM_ACCESSTOKEN}`
         },
-        json: true // Automatically parses the JSON string in the response
+        json: true
     };
     let webResponse = await rpn.get(options);
     let allSprints: Array<any> = webResponse.value
-    console.log(`All sprints: `) // todo must be debug
-    allSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
+    console.debug(`All sprints: `)
+    allSprints.forEach(function (sprint) { console.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
-    console.log(`Get active sprints at time of commit`)
+    console.debug(`Get active sprints at time of commit`)
     let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= new Date(sprint.attributes.startDate) && commitTime < new Date(sprint.attributes.finishDate))
-    console.log(`Active sprints: `) // todo must be debug
-    activeSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
+    console.debug(`Active sprints: `)
+    activeSprints.forEach(function (sprint) { console.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
-    return "testValue"
+    if (activeSprints.length == 0) {
+        console.log(`No active sprints at time of commit.`)
+        return ""
+    }
+    else if (activeSprints.length == 1) {
+        console.log(`Sprint '${activeSprints[0].name}' was active at time of commit`)
+        return activeSprints[0].name
+    }
+    else {
+        console.log(`Multiple active sprints at time of commit. Can't select one`)
+        return ""
+    }
 }
 
 async function run() {
@@ -50,7 +60,7 @@ async function run() {
         let extraVariables: { [variable: string]: string } = {}
         extraVariables["EXTRAVARIABLES_ACTIVESPRINT"] = await getActiveSprintName()
 
-        console.log("Variables calculated:")
+        console.log("Calculated extra variables:")
         console.log(extraVariables)
 
         for (let variable in extraVariables) {
@@ -63,7 +73,3 @@ async function run() {
 }
 
 run()
-
-
-// todo
-//  - check if process.exit(-1) is necessary running this script inside a task
