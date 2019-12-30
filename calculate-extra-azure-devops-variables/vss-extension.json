@@ -15,7 +15,9 @@
         "Azure Pipelines"
     ],
     "tags": [
-        "variables"
+        "variables",
+        "sprint",
+        "iteration"
     ],
     "links": {
         "support": { "uri": "https://github.com/FlorisDevreese/Azure-DevOps-Extensions/issues" }
