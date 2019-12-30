@@ -25,7 +25,7 @@ async function getActiveSprintName(): Promise<string> {
     tl.debug(`Time of commit: ${commitTime}`)
 
     let commitDay = new Date(Date.UTC(commitTime.getFullYear(), commitTime.getMonth(), commitTime.getDate()))
-    tl.debug(`Commit day in UTC (for comparing dates): ${commitDay}`)
+    tl.debug(`Commit day in UTC (used for comparing dates): ${commitDay}`)
 
     tl.debug("Get all sprints")
     var options = {
