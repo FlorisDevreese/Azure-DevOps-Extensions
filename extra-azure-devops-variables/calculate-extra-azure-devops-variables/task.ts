@@ -17,12 +17,12 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 // ------------------------------------ functions ------------------------------------
 async function getActiveSprintName(): Promise<string> {
     console.log("Calculate active sprint")
-    console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
+    tl.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
     let gitResponse: tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
     let commitTime: Date = new Date(`${gitResponse.stdout}`)
-    console.debug(`Time of commit: ${commitTime}`)
+    tl.debug(`Time of commit: ${commitTime}`)
 
-    console.debug("Get all sprints")
+    tl.debug("Get all sprints")
     var options = {
         uri: `${process.env.SYSTEM_COLLECTIONURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
         headers: {
@@ -33,13 +33,13 @@ async function getActiveSprintName(): Promise<string> {
     };
     let webResponse = await rpn.get(options);
     let allSprints: Array<any> = webResponse.value
-    console.debug(`All sprints: `)
-    allSprints.forEach(function (sprint) { console.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
+    tl.debug(`All sprints: `)
+    allSprints.forEach(function (sprint) { tl.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
-    console.debug(`Get active sprints at time of commit`)
+    tl.debug(`Get active sprints at time of commit`)
     let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= new Date(sprint.attributes.startDate) && commitTime < new Date(sprint.attributes.finishDate))
-    console.debug(`Active sprints: `)
-    activeSprints.forEach(function (sprint) { console.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
+    tl.debug(`Active sprints: `)
+    activeSprints.forEach(function (sprint) { tl.debug(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) })
 
     if (activeSprints.length == 0) {
         console.log(`No active sprints at time of commit.`)
