@@ -13,7 +13,6 @@ Add the `Calculate extra Azure Devops variables` task to your pipeline. In the f
 
 ### yaml pipeline
 ```yml
-# todo provide a shorter name
 steps:
   - task: FlorisDevreese.calculate-extra-azure-devops-variables.task.task@1
     displayName: 'Calculate extra Azure Devops variables'
