@@ -24,7 +24,7 @@
         "large": "images/extension-icon-large.png"
     },
     "screenshots": [
-        { "path": "images/classic build screenshot.png" }
+        { "path": "images/classic-build-screenshot.png" }
     ],
     "repository": {
         "type": "git",
