@@ -25,7 +25,7 @@ steps:
 ```
 
 ### Classic build
-![classic build screenshot](images/classic-build-screenshot.png)
+![classic build screenshot](https://github.com/FlorisDevreese/Azure-DevOps-Extensions/raw/master/calculate-extra-azure-devops-variables/images/classic-build-screenshot.png)
 
 ## Contribute
 For the moment only one extra variable is calculated. If you have ideas for other variables that could be calculated, just give a shout, or create a pull request. All help is welcome 😎!

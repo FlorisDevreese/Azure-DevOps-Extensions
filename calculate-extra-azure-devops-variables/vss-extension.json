@@ -31,8 +31,7 @@
         "uri": "https://github.com/FlorisDevreese/Azure-DevOps-Extensions"
     },
     "content": {
-        "details": { "path": "README.md" },
-        "license": { "path": "../LICENSE.txt" }
+        "details": { "path": "README.md" }
     },
     "files": [
         {
