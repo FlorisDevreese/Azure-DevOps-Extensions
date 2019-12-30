@@ -10,7 +10,7 @@ pool:
   vmImage: "ubuntu-latest"
 
 variables:
-  workFolder: calculate-extra-azure-devops-variables/task
+  workFolder: calculate-extra-azure-devops-variables
 
 steps:
   - task: UseNode@1
@@ -19,7 +19,7 @@ steps:
     displayName: npm install
     inputs:
       command: "install"
-      workingDir: "$(workFolder)"
+      workingDir: "$(workFolder)/task"
 
   - task: PowerShell@2
     displayName: tsc
@@ -27,7 +27,7 @@ steps:
       targetType: "inline"
       script: "tsc"
       pwsh: true
-      workingDirectory: "$(workFolder)"
+      workingDirectory: "$(workFolder)/task"
 
   - task: TfxInstaller@2
     inputs:
@@ -42,13 +42,13 @@ steps:
       extensionId: extra-azure-devops-variables
       versionAction: "Patch"
       setBuildNumber: "true"
-      cwd: "extra-azure-devops-variables"
+      cwd: "$(workFolder)"
 
   - task: PackageAzureDevOpsExtension@2
     displayName: Package extension
     inputs:
-      rootFolder: "extra-azure-devops-variables"
-      localizationRoot: "extra-azure-devops-variables"
+      rootFolder: "$(workFolder)"
+      localizationRoot: "$(workFolder)"
       extensionVersion: "$(Build.BuildNumber)"
       updateTasksVersion: true
       updateTasksVersionType: "patch"
