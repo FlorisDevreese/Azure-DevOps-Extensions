@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
     "id": "36AB9AD1-87C4-4869-AFEC-1775FD8361CB",
-    "name": "calculate-extra-azure-devops-variables",
+    "name": "task",
     "friendlyName": "Calculate extra Azure Devops variables",
     "description": "Calculate extra Azure Devops variables. Use these variables in the same way as you use the 'Azure DevOps predefined variables'",
     "helpMarkDown": "Calculates these extra variables:\n- `EXTRAVARIABLES_ACTIVESPRINT`: Contains the name of the sprint that was active at the time of commit.\n- **Note 1:** Is `null` when no active sprint, or when multiple active sprints.\n- **Note 2:** Sprint dates are in `UTC` time. The commit time is local time. So when looking for tha active sprint it will take time zone difference into account.",

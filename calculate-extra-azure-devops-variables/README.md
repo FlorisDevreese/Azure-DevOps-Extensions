@@ -20,8 +20,8 @@ steps:
     env:
       SYSTEM_ACCESSTOKEN: $(System.AccessToken) # must provide access to SYSTEM_ACCESSTOKEN
     
-  - powershell: Write-Host "Use variables like this '$env:EXTRAVARIABLES_ACTIVESPRINT'"
-    displayName: 'use variable $(EXTRAVARIABLES_ACTIVESPRINT)'
+  - pwsh: 'Write-Host "use it like this: $env:EXTRAVARIABLES_ACTIVESPRINT"'
+    displayName: 'or like like this: $(EXTRAVARIABLES_ACTIVESPRINT)'
 ```
 
 ### Classic build
