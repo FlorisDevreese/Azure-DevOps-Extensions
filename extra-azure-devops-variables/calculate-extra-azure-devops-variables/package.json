@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.9.3"
+    "@types/request-promise-native": "^1.0.17",
+    "azure-pipelines-task-lib": "^2.9.3",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
   },
   "devDependencies": {
     "@types/node": "^13.1.1",

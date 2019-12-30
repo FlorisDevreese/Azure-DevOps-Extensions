@@ -1,5 +1,6 @@
 import tl = require('azure-pipelines-task-lib/task')
 import tr = require('azure-pipelines-task-lib/toolrunner')
+import rpn = require('request-promise-native')
 
 // ------------------------------------ prerequisites ------------------------------------
 if (process.env.SYSTEM_ACCESSTOKEN == null) {
@@ -17,11 +18,26 @@ if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER))
 async function getActiveSprintName(): Promise<string> {
     console.debug("Calculate active sprint")
     console.debug(`Get commit time of ${process.env.BUILD_SOURCEVERSION}`)
-    let result : tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
-    console.log(`dateTimeString: ${result.stdout}`)
-    let commitTime: Date = new Date(`${result.stdout}`)
+    let gitResponse: tr.IExecSyncResult = tl.execSync("git", `show -s --format=%ci ${process.env.BUILD_SOURCEVERSION}`)
+    let commitTime: Date = new Date(`${gitResponse.stdout}`)
     console.log(`Time of commit: ${commitTime}`)
 
+    console.debug("Get all sprints")
+    let escapedTeamProject = encodeURI(<string>process.env.SYSTEM_TEAMPROJECT) // todo get this into the string variable
+    var options = {
+        uri: `${process.env.SYSTEM_COLLECTIONURI}${escapedTeamProject}/_apis/work/teamsettings/iterations?api-version=5.1`,
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${process.env.SYSTEM_ACCESSTOKEN}`
+        },
+        json: true // Automatically parses the JSON string in the response
+    };
+
+    let webResponse = await rpn.get(options);
+    let allSprints: Array<any> = webResponse.value
+    console.log(`All sprints: `) // todo must be debug
+    allSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}`) })
+    // console.log(`${allSprints.name.join("\n - ")}`)
 
 
     return "testValue"
@@ -45,8 +61,6 @@ async function run() {
 }
 
 run()
-
-
 
 
 // todo
