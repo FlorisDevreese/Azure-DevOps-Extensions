@@ -38,7 +38,7 @@ async function getActiveSprintName(): Promise<string> {
     allSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
 
     console.log(`Get active sprints at time of commit`)
-    let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= sprint.attributes.startDate && commitTime < sprint.attributes.finishDate)
+    let activeSprints: Array<any> = allSprints.filter(sprint => commitTime >= new Date(sprint.attributes.startDate) && commitTime < new Date(sprint.attributes.finishDate))
     console.log(`Active sprints: `) // todo must be debug
     activeSprints.forEach(function (sprint) { console.log(` -  ${sprint.name}: ${sprint.attributes.startDate} -> ${sprint.attributes.finishDate}`) }) // todo must be debug
 
