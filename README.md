@@ -13,3 +13,5 @@ Contains the `Calculate extra Azure Devops variables` pipeline task that calcula
 
 
 Use these variables in the same way as you use the [Azure DevOps predefined variables](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables)
+
+**Note:** For the moment only one extra variable is calculated. If you have ideas for other variables that could be calculated, just give a shout, or create a pull request. All help is welcome 😎!
