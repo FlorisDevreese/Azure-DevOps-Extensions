@@ -13,7 +13,7 @@ async function getActiveSprintName(): Promise<string> {
 
     // todo if it's an release, then get the current time
     let compareTime: Date = new Date()
-    if(process.env.BUILD_SOURCEVERSION != null){
+    if (process.env.BUILD_SOURCEVERSION != null) {
         tl.debug(`Check if a Git based version control system is used.`)
         let supportedProviders = ["TfsGit", "Git", "GitHub"]
         if (!supportedProviders.includes(<string>process.env.BUILD_REPOSITORY_PROVIDER)) {
@@ -39,7 +39,7 @@ async function getActiveSprintName(): Promise<string> {
 
     tl.debug("Get all sprints")
     var options = {
-        uri: `${process.env.SYSTEM_COLLECTIONURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
+        uri: `${process.env.SYSTEM_TEAMFOUNDATIONSERVERURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${process.env.SYSTEM_ACCESSTOKEN}`
