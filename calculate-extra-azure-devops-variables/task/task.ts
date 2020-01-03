@@ -39,7 +39,7 @@ async function getActiveSprintName(): Promise<string> {
 
     tl.debug("Get all sprints")
     var options = {
-        uri: `${process.env.SYSTEM_TEAMFOUNDATIONSERVERURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
+        uri: `${process.env.SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}${encodeURI(<string>process.env.SYSTEM_TEAMPROJECT)}/_apis/work/teamsettings/iterations?api-version=5.1`,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${process.env.SYSTEM_ACCESSTOKEN}`
